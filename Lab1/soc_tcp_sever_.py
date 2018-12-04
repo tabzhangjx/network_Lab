@@ -10,15 +10,26 @@ tcpSerSocket.listen(50)
 # newSocket用来为这个客户端服务
 # tcpSerSocket就可以省下来专门等待其他新客户端的链接
 newSocket, clientAddr = tcpSerSocket.accept()
+
+
+
+a=['zjx','wyh']
+print(a[1])
 # 接收对方发送过来的数据，最大接收1024个字节
-recvData = newSocket.recv(1024)
-aaa = recvData.decode('utf8')
-print('接收到的数据为:', aaa)
+ID = newSocket.recv(1024)
+aa1 = ID.decode('utf8')
+pas = newSocket.recv(1024)
+aa2 = pas.decode('utf8')
+
 # 发送一些数据到客户端
 
-sendata="thank you !"
-bbb=sendata.encode('utf-8')
 
+if (aa1==a[1] and aa2==a[0]) or (aa1==a[0] and aa2==a[1]):
+	sendata="success!"
+else:
+	sendata="failure!"
+
+bbb=sendata.encode('utf-8')
 newSocket.send(bbb)
 # 关闭为这个客户端服务的套接字，只要关闭了，就意味着为不能再为这个客户端服务了，如果还需要服务，只能再次重新连接
 newSocket.close()
