@@ -32,5 +32,5 @@ def create (switch_type = Hub, host_type = BasicHost):
     topo.link(s1, h2)
     topo.link(s1, h3)
     topo.link(s1, h4)
-    topo.link(s1, s5)
-    topo.link(s1, s6)
+    topo.link(s1, h5)
+    topo.link(s1, h6)
