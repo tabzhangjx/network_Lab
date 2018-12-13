@@ -110,19 +110,23 @@ class RoutingUpdate (Packet):
         """
         Add a destination to announce, along with senders distance to that dest.
         """
+        print "add_"+self
         self.paths[dest] = distance
 
     def get_distance(self, dest):
         """
         Get the distance to the specified destination.
         """
+        print "get_"+self
         return self.paths[dest]
 
     def all_dests(self):
         """
         Get a list of all destinations with paths announced in this message.
         """
+        print "all_"+self
         return self.paths.keys()
 
     def str_routing_table(self):
+        print "str_"+self
         return str(self.paths) 
