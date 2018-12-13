@@ -22,28 +22,28 @@ class DVRouter (api.Entity):
    		self.send(a, ports, flood = False)
 
     def RouteUpdate(self, RUP):
-    	def same_con(i, j):
+    	def same_con(i):
     		if i==self:
     			pass
     		else:
-    			if self.Route_table[i][1]=RUP[i][1]:
-    				self.Route_table[i][2]=RUP[i][2]+1
+    			if self.Route_table[i][0] == RUP[i][0]:
+    				self.Route_table[i][1]=RUP[i][1]+1
     			else:
-    				if self.Route_table[i][2]>RUP[i][2]+1:
-    					self.Route_table[i][1]=RUP[i][1]
-    					self.Route_table[i][2]=RUP[i][2]+1
+    				if self.Route_table[i][1]>RUP[i][1]+1:
+    					self.Route_table[i][0]=RUP[i][0]
+    					self.Route_table[i][1]=RUP[i][1]+1
     			#更新时存在一个问题
 
-    	def diff_con(i, j):
-    		self.Route_table[i][1]=RUP[i][1]
-    		self.Route_table[i][2]=RUP[i][2]+1
+    	def diff_con(i):
+    		self.Route_table[i][0]=RUP[i][0]
+    		self.Route_table[i][1]=RUP[i][1]+1
 
     	keys_ = RUP.keys()
     	for i in keys_:
     		if self.Route_table.has_key(i):
-    			same_con(i, i)
+    			same_con(i)
     		else:
-    			diff_con(i, i)
+    			diff_con(i)
 
 
     def __init__(self):
